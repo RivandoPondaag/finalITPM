@@ -5,7 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "startb": "node ./backend/bin/www",
+    "startbd": "nodemon ./bin/www",
+    "startf": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },

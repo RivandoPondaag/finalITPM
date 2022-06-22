@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Gap, Header } from '../../components';
 import { Profil, Warta } from '../../assets/icon';
 
-const Menu = ({navigation}) => {
+const Menu = ({navigation, route}) => {
+  const [data, setData] = useState(route.params.data);
+  
   return (
     <View style={styles.page}>
       <Header title='Menu' color='white' textColor='black' onBack={()=>navigation.goBack()}/>
@@ -14,9 +16,9 @@ const Menu = ({navigation}) => {
      <View style={styles.nameWrapper}>
      
      <Text style={styles.text}>Syalom,</Text>
-      <Text style={styles.text}>Rivando Pondaag</Text>
+      <Text style={styles.text}>{data.nama}</Text>
       <Gap height={25}/>
-      <Text style={styles.text}>Kolom 3</Text>
+      <Text style={styles.text}>Kolom {data.kolom}</Text>
      </View>
      <View style={styles.profilWrapper}>
      <Profil/>

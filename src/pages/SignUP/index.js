@@ -16,7 +16,29 @@ const SignUP = ({navigation}) => {
     const [jenisKelamin, setJenisKelamin]=useState('');
     const [password, setPassword]=useState('');
 
+    const onSubmit = async() => {
+        const reqOpt = {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                nama: fullName,
+                kolom: kolom,
+                NIK: nik,
+                jenisKelamin: jenisKelamin,
+                password: password,
+                photo: photo,
+            }),
+        };
 
+        const req = await fetch(`http://192.168.1.5:3000/createAccount`, reqOpt);
+        const res = await req.json();
+        if(res.status === 'success') {
+            navigation.replace('SignIn');
+        }
+        else if(res.status === 'error') {
+            // code akun nd bisa ta daftar
+        }
+    };
 
     const getPhoto = async () =>{
         
@@ -28,20 +50,6 @@ const SignUP = ({navigation}) => {
         setPhoto(result.assets[0].uri)
         setHasPhoto(true);
     }
-
-    const onSubmit = () =>{
-            const data ={
-                fulName: fullName,
-                kolom: kolom,
-                nik: nik,
-                jenisKelamin: jenisKelamin,
-                password: password,
-            }
-        
-
-        
-       
-    };
 
   return (
     <View style={styles.page}>
