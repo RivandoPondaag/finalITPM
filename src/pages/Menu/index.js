@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Gap, Header } from '../../components';
@@ -10,19 +10,21 @@ const Menu = ({navigation, route}) => {
   return (
     <View style={styles.page}>
       <Header title='Menu' color='white' textColor='black' onBack={()=>navigation.goBack()}/>
-
         <View style={styles.center}>
-        <View style={styles.contentWrapper}>
-     <View style={styles.nameWrapper}>
+          <View style={styles.contentWrapper}>
+            <View style={styles.nameWrapper}>
+              <Text style={styles.text}>Syalom,</Text>
+              <Text style={styles.text}>{data.nama}</Text>
+              <Gap height={25}/>
+              <Text style={styles.text}>Kolom {data.kolom}</Text>
+            </View>
+            {(data.photo !== null && data.photo !== '') ? 
+            <Image source={{uri: data.photo}} style={styles.photoWrapper} />
+            : 
+            <View style={styles.profilWrapper}>
+              <Profil/>
+            </View>}
      
-     <Text style={styles.text}>Syalom,</Text>
-      <Text style={styles.text}>{data.nama}</Text>
-      <Gap height={25}/>
-      <Text style={styles.text}>Kolom {data.kolom}</Text>
-     </View>
-     <View style={styles.profilWrapper}>
-     <Profil/>
-     </View>
      </View>
 
      <View style={styles.fitur}>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: 390,
     height:145,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection:'row',
     
@@ -116,6 +118,14 @@ const styles = StyleSheet.create({
     alignItems:'flex-end',
     flex:1,
     paddingRight:20,
+  },
+  photoWrapper: {
+    height: 62.5,
+    width: 62.5,
+    borderRadius: 62.5/2,
+    borderWidth: 1,
+    alignSelf: 'center',
+    marginRight: 20,
   },
   fitur:{
     flexDirection:'row',

@@ -27,7 +27,7 @@ const SignUP = ({navigation, route}) => {
                 NIK: nik,
                 jenisKelamin: jenisKelamin,
                 password: password,
-                photo: photo,
+                photo: (photo === '') ? null : photo,
             }),
         };
 
