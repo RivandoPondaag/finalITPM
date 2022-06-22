@@ -41,9 +41,9 @@ const SignIn = ({navigation}) => {
       <Gap height={24}/>
       <Button title="Sign In" onPress={SignIn_onPress}/>
       <Gap height={24}/>
-      <Button title="Create New Account" color='#8D92A3' onPress={()=>navigation.navigate('SignUP')}/>
+      <Button title="Create New Account" color='#8D92A3' onPress={()=>navigation.navigate('SignUP', {uri: uri})}/>
       <Gap height={10}/>
-      <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Guest')}>
+      <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Guest', {uri: uri})}>
       <View style={styles.guestTextWrapper}>
       <Text style={styles.text}>Login as guest</Text>
       </View>

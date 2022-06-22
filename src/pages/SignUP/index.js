@@ -5,7 +5,8 @@ import {launchImageLibrary} from 'react-native-image-picker'
 
 
 
-const SignUP = ({navigation}) => {
+const SignUP = ({navigation, route}) => {
+    const [uri, setUri] = useState(route.params.uri);
 
     const [photo, setPhoto]= useState('');
     const [hasPhoto, setHasPhoto]= useState(false); 
@@ -30,13 +31,13 @@ const SignUP = ({navigation}) => {
             }),
         };
 
-        const req = await fetch(`http://192.168.1.5:3000/createAccount`, reqOpt);
+        const req = await fetch(`${uri}createAccount`, reqOpt);
         const res = await req.json();
         if(res.status === 'success') {
             navigation.replace('SignIn');
         }
         else if(res.status === 'error') {
-            // code akun nd bisa ta daftar
+            // code klo akun nd bisa ta daftar
         }
     };
 
