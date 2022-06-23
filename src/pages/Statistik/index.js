@@ -8,7 +8,7 @@ const Statistik = ({navigation}) => {
   const data ={
     
     jenisKelamin: [
-      {x: 'Laki-Laki', y: 50},
+      {x: 'Laki-Laki', y: 80},
       {x: 'Perempuan', y: 80},
 
     ],

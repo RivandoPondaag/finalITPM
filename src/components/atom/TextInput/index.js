@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Poppins-Reguler',
         marginBottom: 6,
+        color:'black',
         
     },
     input: {

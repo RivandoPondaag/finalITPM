@@ -1,17 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Gap, Header } from '../../components'
+import { Button, Gap, Header, TextInput } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Jadwal = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title='Jadwal' onBack={()=>navigation.goBack()}/>
-      <Gap height={30}/>
+      <Header title='Pesan Tempat' onBack={()=>navigation.goBack()}/>
       
-      <View style={{backgroundColor:'white',borderRadius:15,elevation:5, marginHorizontal:5,}}>
+      
+      <View style={{marginBottom: 10,marginHorizontal:5}}>
+      <TextInput title='Jumlah' placeholder="Masukan jumlah tempat duduk"/>
+      </View>
+      <View style={{marginLeft:10,}}>
+        <Text style={{color:'black',fontWeight:'bold'}}>100/100</Text>
+      </View>
+      <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>
-        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',marginTop:10,}}>Sesi Pagi </Text>
+        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',margin:20,}}>Sesi Pagi </Text>
         
         <View style={styles.jamWrapper}>
         <View style={styles.wrapper}>
@@ -21,12 +27,19 @@ const Jadwal = ({navigation}) => {
         </View>
 
       </View>
-      <Text style={{marginTop:15,marginBottom:5, marginLeft:10}}>Kolom 1, Kolom 3, Kolom 5, Kolom 7</Text>
+     
       </View>
+      <View style={{marginRight:15, marginLeft:250, marginTop:5}}>   
+      <Button title="Pesan tempat"/>
+      </View>
+   
       <Gap height={20}/>
-      <View style={{backgroundColor:'white',borderRadius:15,elevation:5, marginHorizontal:5,}}>
+      <View style={{marginLeft:10,}}>
+        <Text style={{color:'black',fontWeight:'bold'}}>100/100</Text>
+      </View>
+      <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>
-        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',marginTop:10,}}>Sesi Siang </Text>
+        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',margin:20,}}>Sesi Siang </Text>
         
         <View style={styles.jamWrapper}>
         <View style={styles.wrapper}>
@@ -36,13 +49,18 @@ const Jadwal = ({navigation}) => {
         </View>
 
       </View>
-      <Text style={{marginTop:15,marginBottom:5, marginLeft:10}}>Kolom 8, Kolom 9, Kolom 11, Kolom 12</Text>
+     
       </View>
-
+      <View style={{marginRight:15, marginLeft:250, marginTop:5}}>   
+      <Button title="Pesan tempat"/>
+      </View>
       <Gap height={20}/>
-      <View style={{backgroundColor:'white',borderRadius:15,elevation:5, marginHorizontal:5,}}>
+      <View style={{marginLeft:10,}}>
+        <Text style={{color:'black',fontWeight:'bold'}}>100/100</Text>
+      </View>
+      <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>
-        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',marginTop:10,}}>Sesi malam </Text>
+        <Text style={{fontSize:25,fontWeight:'bold',color:'#83078EB0',margin:20,}}>Sesi malam </Text>
         
         <View style={styles.jamWrapper}>
         <View style={styles.wrapper}>
@@ -52,7 +70,10 @@ const Jadwal = ({navigation}) => {
         </View>
 
       </View>
-      <Text style={{marginTop:15,marginBottom:5, marginLeft:10}}>Kolom 2, Kolom 4, Kolom 6, Kolom 10</Text>
+      
+      </View>
+      <View style={{marginRight:15, marginLeft:250, marginTop:5}}>   
+      <Button title="Pesan tempat"/>
       </View>
 
     </View>
@@ -89,6 +110,7 @@ const styles = StyleSheet.create({
   },
   page:{
     flex:1,
+    backgroundColor:'white',
   },
   wrapper:{
     flexDirection:'row',

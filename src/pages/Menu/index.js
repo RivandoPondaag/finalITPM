@@ -30,30 +30,18 @@ const Menu = ({navigation, route}) => {
      <View style={styles.fitur}>
    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Jadwal')}>
     
-   <View>
+   <View style={{paddingRight:10}}>
    
    <View style={styles.jadwal}>
      <Icon name="calendar-sharp" size={35} color="white" />
      </View>
    
      <View>
-      <Text>   Jadwal</Text>
+      <Text>Pesan Tempat</Text>
      </View>
    </View>
    </TouchableOpacity>
-   <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Kapasitas')}>
-    
-     <View>
-     <View style={styles.kapasitas}>
-     <Icon name="business-sharp" size={35} color="white" />
-      
-     </View>
-     <View>
-      <Text>  Kapasitas</Text>
-     </View>
-     </View>
-     </TouchableOpacity>
-     <View>
+     <View style={{paddingRight:10}}>
      <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Statistik')}>
      <View style={styles.statistik}>
      <Icon name="stats-chart-sharp" size={35} color="white" />
@@ -61,7 +49,7 @@ const Menu = ({navigation, route}) => {
      </View>
      </TouchableOpacity>
      <View>
-      <Text>   Statistik</Text>
+      <Text>  Statistik</Text>
      </View>
      </View>
      <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Tentang')}>
