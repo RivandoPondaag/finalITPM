@@ -1,11 +1,30 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Gap, Header } from '../../components';
 import { Profil, Warta } from '../../assets/icon';
 
 const Menu = ({navigation, route}) => {
-  const [data, setData] = useState(route.params.data);
+  const uri = route.params.uri;
+  const data = route.params.data;
+
+  const [judul, setJudul] = useState(null);
+  const [pengumuman, setPengumuman] = useState(null);
+
+  useEffect(() => {
+    (async() => {
+      const req = await fetch(`${uri}getPengumuman`);
+      const res = await req.json();
+      if(res.status === 'success')  {
+        // jika pengumuman berhasil diterima dari database
+        setJudul(res.desc.judul);
+        setPengumuman(res.desc.pengumuman);
+      }
+      else {
+        // jika pengumuman gagal diterima dari database
+      }
+    })();
+  });
   
   return (
     <View style={styles.page}>
@@ -72,13 +91,13 @@ const Menu = ({navigation, route}) => {
       <View style={{borderWidth: 1,
         borderColor: 'black',
         borderRadius: 5,marginHorizontal:10,marginVertical:5, height:25,justifyContent:'center'}}>
-     
+        <Text>{judul}</Text>
       </View>
       <Text style={{color:'black',marginLeft:10,marginTop:5}}>Isi Pengumuman</Text>
       <View style={{borderWidth: 1,
             borderColor: 'black',
             borderRadius: 5,marginHorizontal:10,marginVertical:5, height:300,justifyContent:'center',marginBottom:20}}>
-     
+              <Text>{pengumuman}</Text>
    </View>
       </ScrollView>
 

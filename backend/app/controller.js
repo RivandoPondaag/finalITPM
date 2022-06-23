@@ -85,7 +85,7 @@ const guestSignIn = async(req, res, next) => {
     }
 };
 
-const operatorInput = async(req, res, next) => {
+const postPengumuman = async(req, res, next) => {
     const { kapasitas, judul, pengumuman } = req.query;
     
     try {
@@ -110,9 +110,29 @@ const operatorInput = async(req, res, next) => {
     }
 };
 
+const getPengumuman = async(req, res, next) => {
+    try {
+        const result = await p.find();
+        
+        res.send({
+            status: 'success',
+            message: `Pengumuman berhasil dikirim.`,
+            desc: result[result.length-1],
+        });
+    }
+    catch(e) {
+        res.send({
+            status: 'error',
+            message: `Pengumuman gagal dikirim.`,
+            desc: e.message,
+        });
+    }
+};
+
 module.exports = {
     signIn,
     createAccount,
     guestSignIn,
-    operatorInput,
+    postPengumuman,
+    getPengumuman,
 };

@@ -19,7 +19,7 @@ const Oprator = ({navigation, route}) => {
       }),
     };
 
-    const req = await fetch(`${uri}operatorInput?kapasitas=${kapasitas}&judul=${judul}&pengumuman=${pengumuman}`, reqOpt);
+    const req = await fetch(`${uri}postPengumuman?kapasitas=${kapasitas}&judul=${judul}&pengumuman=${pengumuman}`, reqOpt);
     const res = await req.json();
     if(res.status === 'success') {
       // kode jika berhasil terkirim
