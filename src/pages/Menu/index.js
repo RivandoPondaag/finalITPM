@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Gap, Header } from '../../components';
@@ -65,8 +65,22 @@ const Menu = ({navigation, route}) => {
      </TouchableOpacity>
      </View>
      <Gap height={15}/>
-      <Warta/>
-        </View>
+     
+      </View>
+      <ScrollView>
+      <Text style={{color:'black',marginLeft:10,marginTop:10}}>Judul Pengumuman</Text>
+      <View style={{borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 5,marginHorizontal:10,marginVertical:5, height:25,justifyContent:'center'}}>
+     
+      </View>
+      <Text style={{color:'black',marginLeft:10,marginTop:5}}>Isi Pengumuman</Text>
+      <View style={{borderWidth: 1,
+            borderColor: 'black',
+            borderRadius: 5,marginHorizontal:10,marginVertical:5, height:300,justifyContent:'center',marginBottom:20}}>
+     
+   </View>
+      </ScrollView>
 
     </View>
   )
