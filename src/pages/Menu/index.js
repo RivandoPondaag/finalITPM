@@ -47,7 +47,7 @@ const Menu = ({navigation, route}) => {
      </View>
 
      <View style={styles.fitur}>
-   <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Jadwal')}>
+   <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Jadwal', {uri: uri})}>
     
    <View style={{paddingRight:10}}>
    
