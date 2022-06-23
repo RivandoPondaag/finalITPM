@@ -1,5 +1,6 @@
 const user = require('./userModel');
 const guest = require('./guestModel');
+const p = require('./pengumumanModel');
 const { ObjectID } = require('mongodb');
 
 const signIn = async(req, res, next) => {
@@ -84,8 +85,34 @@ const guestSignIn = async(req, res, next) => {
     }
 };
 
+const operatorInput = async(req, res, next) => {
+    const { kapasitas, judul, pengumuman } = req.query;
+    
+    try {
+        const result = await p.create({
+            kapasitas: kapasitas,
+            judul: judul,
+            pengumuman: pengumuman,
+        });
+
+        res.send({
+            status: 'success',
+            message: `Permintaan berhasil diproses.`,
+            desc: result,
+        });
+    }
+    catch(e) {
+        res.send({
+            status: 'error',
+            message: `Permintan gagal diproses.`,
+            desc: e.message,
+        });
+    }
+};
+
 module.exports = {
     signIn,
     createAccount,
     guestSignIn,
+    operatorInput,
 };

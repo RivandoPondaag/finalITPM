@@ -8,7 +8,7 @@ const guestSchema = new mongoose.Schema({
     address: {
         type: String,
         required: [true, "Address tidak boleh kosong"],
-    }
+    },
 });
 
-module.exports = mongoose.model('guest', guestSchema);
+module.exports = mongoose.model('guests', guestSchema);

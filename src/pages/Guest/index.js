@@ -4,7 +4,7 @@ import { Button, Gap, Header, TextInput } from '../../components'
 import { Logo } from '../../assets/icon'
 
 const Guest = ({navigation, route}) => {
-  const [uri, setUri] = useState(route.params.uri);
+  const uri = route.params.uri;
   const [name, setName] = useState(null);
   const [address, setAddress] = useState(null);
 

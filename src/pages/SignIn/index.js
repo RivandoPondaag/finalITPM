@@ -3,25 +3,30 @@ import React, { useState } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import { Logo } from '../../assets'
 
-const uri = 'http://192.168.43.114:3000/';
+const uri = 'http://192.168.1.5:3000/';
 
 const SignIn = ({navigation}) => {
   const [NIK, setNIK] = useState('');
   const [password, setPassword] = useState('');
 
   const SignIn_onPress = async() => {
-    const req = await fetch(`${uri}signIn?NIK=${NIK}&password=${password}`);
-    const res = await req.json();
-    if(res.status === 'success') {
-      navigation.navigate('Menu', {uri: uri, data: res.desc[0]});
+    if(NIK === 'Op' && password == 'Op') {
+      navigation.replace('Oprator', {uri: uri});
     }
-    else if(res.status === 'error') {
-      if(res.message === 'Akun tidak terdaftar.') {
-        // kalo akun belum terdaftar
-        console.log(`Akun tidak terdaftar`);
+    else {
+      const req = await fetch(`${uri}signIn?NIK=${NIK}&password=${password}`);
+      const res = await req.json();
+      if(res.status === 'success') {
+        navigation.navigate('Menu', {uri: uri, data: res.desc[0]});
       }
-      else {
-        // kalo jadi error lain
+      else if(res.status === 'error') {
+        if(res.message === 'Akun tidak terdaftar.') {
+          // kalo akun belum terdaftar
+          console.log(`Akun tidak terdaftar`);
+        }
+        else {
+          // kalo jadi error lain
+        }
       }
     }
   };

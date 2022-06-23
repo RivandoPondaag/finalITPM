@@ -6,7 +6,7 @@ import {launchImageLibrary} from 'react-native-image-picker'
 
 
 const SignUP = ({navigation, route}) => {
-    const [uri, setUri] = useState(route.params.uri);
+    const uri = route.params.uri;
 
     const [photo, setPhoto]= useState('');
     const [hasPhoto, setHasPhoto]= useState(false); 
