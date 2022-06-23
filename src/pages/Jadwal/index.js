@@ -27,10 +27,49 @@ const Jadwal = ({navigation, route}) => {
         // jika backend gagal mengirim jumlah kapasitas
       }
     })();
-  });
+  }, [sesiPagi, sesiSiang, sesiMalam]);
 
-  const PesanTempat_onPress = (type=null) => {
-    
+  const PesanTempat_onPress = async(waktu=null) => {
+    let reqOpt = {
+      method: 'PUT',
+      headers: {"Content-Type": "application/json"},
+      body: null,
+    };
+
+    if(waktu === `pagi`) {
+      if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas)) {
+        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+        reqOpt.body = JSON.stringify({sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi)});
+        setSesiPagi(parseInt(tempatDuduk) + parseInt(sesiPagi));
+      }
+      else {
+        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      }
+    }
+    else if(waktu === `siang`) {
+      if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
+        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+        reqOpt.body = JSON.stringify({sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang)});
+        setSesiSiang(parseInt(tempatDuduk) + parseInt(sesiSiang));
+      }
+      else {
+        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      }
+    }
+    else if(waktu === `malam`) {
+      if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
+        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+        reqOpt.body = JSON.stringify({sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam)});
+        setSesiMalam(parseInt(tempatDuduk) + parseInt(sesiMalam));
+      }
+      else {
+        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      }
+    }
+
+    const req = await fetch(`${uri}changeJadwal`, reqOpt);
+    const res = await req.json();
+    console.log(res);
   };
 
   return (

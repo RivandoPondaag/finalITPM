@@ -155,6 +155,25 @@ const getJadwal = async(req, res, next) => {
     }
 };
 
+const changeJadwal = async(req, res, next) => {
+    try {
+        const result = await j.updateOne(req.body);
+
+        res.send({
+            status: 'success',
+            message: `Jadwal berhasil diperbarui.`,
+            desc: result,
+        });
+    }
+    catch(e) {
+        res.send({
+            status: 'error',
+            message: `Jadwal gagal diperbarui.`,
+            desc: e.message,
+        });
+    }
+}
+
 module.exports = {
     signIn,
     createAccount,
@@ -162,4 +181,5 @@ module.exports = {
     postPengumuman,
     getPengumuman,
     getJadwal,
+    changeJadwal,
 };
