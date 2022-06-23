@@ -7,5 +7,6 @@ import Tentang from "./TentangKami";
 import Kapasitas from "./Kapasitas";
 import Jadwal from "./Jadwal";
 import Guest from "./Guest";
+import Oprator from "./Oprator";
 
-export {SplashScreen,SignIn,SignUP,Menu,Statistik,Tentang,Kapasitas,Jadwal,Guest};
+export {SplashScreen,SignIn,SignUP,Menu,Statistik,Tentang,Kapasitas,Jadwal,Guest,Oprator};
