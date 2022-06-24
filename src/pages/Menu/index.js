@@ -61,7 +61,7 @@ const Menu = ({navigation, route}) => {
    </View>
    </TouchableOpacity>
      <View style={{paddingRight:10}}>
-     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Statistik')}>
+     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Statistik', {uri: uri})}>
      <View style={styles.statistik}>
      <Icon name="stats-chart-sharp" size={35} color="white" />
     
