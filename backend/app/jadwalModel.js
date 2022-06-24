@@ -12,6 +12,12 @@ const jadwalSchema = new mongoose.Schema({
     },
     sesiMalam: {
         type: Number,
+    },
+    lakiLaki: {
+        type: Number,
+    },
+    perempuan: {
+        type: Number,
     }
 });
 

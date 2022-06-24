@@ -5,12 +5,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Jadwal = ({navigation, route}) => {
   const uri = route.params.uri;
+  const jenisKelamin = route.params.jenisKelamin;
 
   const [tempatDuduk, setTempatDuduk] = useState(null);
   const [kapasitas, setKapasitas] = useState(null);
   const [sesiPagi, setSesiPagi] = useState(null);
   const [sesiSiang, setSesiSiang] = useState(null);
   const [sesiMalam, setSesiMalam] = useState(null);
+  const [lakiLaki, setLakiLaki] = useState(null);
+  const [perempuan, setPerempuan] = useState(null);
 
   useEffect(() => {
     (async() => {
@@ -22,12 +25,14 @@ const Jadwal = ({navigation, route}) => {
         setSesiPagi(res.desc.sesiPagi);
         setSesiSiang(res.desc.sesiSiang);
         setSesiMalam(res.desc.sesiMalam);
+        setLakiLaki(res.desc.lakiLaki);
+        setPerempuan(res.desc.perempuan);
       }
       else {
         // jika backend gagal mengirim jumlah kapasitas
       }
     })();
-  }, [sesiPagi, sesiSiang, sesiMalam]);
+  }, [sesiPagi, sesiSiang, sesiMalam, lakiLaki, perempuan]);
 
   const PesanTempat_onPress = async(waktu=null) => {
     let reqOpt = {
@@ -39,8 +44,14 @@ const Jadwal = ({navigation, route}) => {
     if(waktu === `pagi`) {
       if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas)) {
         // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi)});
+        reqOpt.body = JSON.stringify({
+          sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
+          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+        });
         setSesiPagi(parseInt(tempatDuduk) + parseInt(sesiPagi));
+        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
       }
       else {
         // kalo tempat duduk yang dibooking melebihi batas kapasitas
@@ -49,8 +60,14 @@ const Jadwal = ({navigation, route}) => {
     else if(waktu === `siang`) {
       if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
         // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang)});
+        reqOpt.body = JSON.stringify({
+          sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
+          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+        });
         setSesiSiang(parseInt(tempatDuduk) + parseInt(sesiSiang));
+        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
       }
       else {
         // kalo tempat duduk yang dibooking melebihi batas kapasitas
@@ -59,8 +76,14 @@ const Jadwal = ({navigation, route}) => {
     else if(waktu === `malam`) {
       if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
         // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam)});
+        reqOpt.body = JSON.stringify({
+          sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
+          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+        });
         setSesiMalam(parseInt(tempatDuduk) + parseInt(sesiMalam));
+        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
       }
       else {
         // kalo tempat duduk yang dibooking melebihi batas kapasitas
@@ -69,7 +92,12 @@ const Jadwal = ({navigation, route}) => {
 
     const req = await fetch(`${uri}changeJadwal`, reqOpt);
     const res = await req.json();
-    console.log(res);
+    if(res.status === 'success') {
+      // code kalo berhasil booking
+    }
+    else {
+      // code kalo gagal booking
+    }
   };
 
   return (
