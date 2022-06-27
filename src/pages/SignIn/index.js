@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import { Logo } from '../../assets'
 
-const uri = 'http://192.168.1.100:3000/';
+const uri = 'http://192.168.1.5:3000/';
 
 const SignIn = ({navigation}) => {
   const [NIK, setNIK] = useState('');

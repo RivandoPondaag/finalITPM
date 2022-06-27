@@ -16,7 +16,7 @@ const SignUP = ({navigation, route}) => {
     const [fullName, setFullName]=useState('');
     const [kolom, setKolom]=useState('');
     const [nik, setNik]=useState('');
-    const [jenisKelamin, setJenisKelamin]=useState('');
+    const [jenisKelamin, setJenisKelamin]=useState(null);
     const [password, setPassword]=useState('');
 
     const onSubmit = async() => {
@@ -54,8 +54,6 @@ const SignUP = ({navigation, route}) => {
         setHasPhoto(true);
     }
 
-    const [value, setValue] = React.useState('first');
-
   return (
     <View style={styles.page}>
     <Header title='SignUp' onBack={()=>navigation.goBack()}/>
@@ -85,7 +83,7 @@ const SignUP = ({navigation, route}) => {
         <TextInput title='NIK' placeholder='Masukan NIK anda' value={nik} onChangeText={value=>setNik(value)}/>
 
     <Text style={{color:'black',marginTop:5,fontSize:16,}}>Jenis Kelamin</Text>
-    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+    <RadioButton.Group onValueChange={value => setJenisKelamin(value)} value={jenisKelamin}>
       <View style={{flexDirection:'row'}}>
       <View style={{flexDirection:'row',alignItems:'center',marginRight:20}}>
       <RadioButton value="Laki-laki" />
