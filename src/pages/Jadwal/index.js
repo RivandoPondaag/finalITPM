@@ -9,6 +9,7 @@ const Jadwal = ({navigation, route}) => {
 
   const [tempatDuduk, setTempatDuduk] = useState(null);
   const [kapasitas, setKapasitas] = useState(null);
+  const [presentase, setPresentase] = useState(null);
   const [sesiPagi, setSesiPagi] = useState(null);
   const [sesiSiang, setSesiSiang] = useState(null);
   const [sesiMalam, setSesiMalam] = useState(null);
@@ -22,6 +23,7 @@ const Jadwal = ({navigation, route}) => {
       if(res.status === 'success') {
         // jika backend berhasil mengirim jumlah kapasitas
         setKapasitas(res.desc.kapasitas);
+        setPresentase(res.desc.presentase);
         setSesiPagi(res.desc.sesiPagi);
         setSesiSiang(res.desc.sesiSiang);
         setSesiMalam(res.desc.sesiMalam);
@@ -42,7 +44,7 @@ const Jadwal = ({navigation, route}) => {
     };
 
     if(waktu === `pagi`) {
-      if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas)) {
+      if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas*presentase/100)) {
         // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
         reqOpt.body = JSON.stringify({
           sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
@@ -109,7 +111,7 @@ const Jadwal = ({navigation, route}) => {
       <TextInput title='Jumlah' placeholder="Masukan jumlah tempat duduk" onChangeText={setTempatDuduk}/>
       </View>
       <View style={{marginLeft:10,}}>
-        <Text style={{color:'black',fontWeight:'bold'}}>{sesiPagi}/{kapasitas}</Text>
+        <Text style={{color:'black',fontWeight:'bold'}}>{`${sesiPagi}/${kapasitas*presentase/100} (${presentase}% dari ${kapasitas})`}</Text>
       </View>
       <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>
@@ -131,7 +133,7 @@ const Jadwal = ({navigation, route}) => {
    
       <Gap height={20}/>
       <View style={{marginLeft:10,}}>
-        <Text style={{color:'black',fontWeight:'bold'}}>{sesiSiang}/{kapasitas}</Text>
+        <Text style={{color:'black',fontWeight:'bold'}}>{`${sesiSiang}/${kapasitas*presentase/100} (${presentase}% dari ${kapasitas})`}</Text>
       </View>
       <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>
@@ -152,7 +154,7 @@ const Jadwal = ({navigation, route}) => {
       </View>
       <Gap height={20}/>
       <View style={{marginLeft:10,}}>
-        <Text style={{color:'black',fontWeight:'bold'}}>{sesiMalam}/{kapasitas}</Text>
+        <Text style={{color:'black',fontWeight:'bold'}}>{`${sesiMalam}/${kapasitas*presentase/100} (${presentase}% dari ${kapasitas})`}</Text>
       </View>
       <View style={{backgroundColor:'white',borderRadius:15,elevation:10, marginHorizontal:5,}}>
       <View style={styles.pagi}>

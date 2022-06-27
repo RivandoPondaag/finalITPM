@@ -5,6 +5,7 @@ import { Button, Gap, Header, TextInput } from '../../components'
 const Oprator = ({navigation, route}) => {
   const uri = route.params.uri;
   const [kapasitas, setKapasitas] = useState(null);
+  const [presentase, setPresentase] = useState(null);
   const [judul, setJudul] = useState(null);
   const [pengumuman, setPengumuman] = useState(null);
 
@@ -14,12 +15,13 @@ const Oprator = ({navigation, route}) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         kapasitas: kapasitas,
+        presentase: presentase,
         judul: judul,
         pengumuman: pengumuman,
       }),
     };
 
-    const req = await fetch(`${uri}postPengumuman?kapasitas=${kapasitas}&judul=${judul}&pengumuman=${pengumuman}`, reqOpt);
+    const req = await fetch(`${uri}postPengumuman?kapasitas=${kapasitas}&presentase=${presentase}&judul=${judul}&pengumuman=${pengumuman}`, reqOpt);
     const res = await req.json();
     if(res.status === 'success') {
       // kode jika berhasil terkirim
@@ -38,7 +40,7 @@ const Oprator = ({navigation, route}) => {
      <TextInput title='Jumlah Kapasitas'placeholder='Masukan Jumlah Kapasitas' onChangeText={setKapasitas} />
      </View>
      <View style={{backgroundColor:'white',paddingHorizontal:10,paddingVertical:10,}}>
-     <TextInput title='Presentase'placeholder='Masukan Jumlah Presentase' onChangeText={setKapasitas} />
+     <TextInput title='Presentase'placeholder='Masukan Jumlah Presentase' onChangeText={setPresentase} />
      </View>
      <View style={{backgroundColor:'white',paddingHorizontal:10,paddingVertical:10,}}>
      <TextInput title='Judul Pengumuman'placeholder='Masukan Judul Pengumuman' onChangeText={setJudul} />

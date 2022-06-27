@@ -10,7 +10,7 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const SignIn_onPress = async() => {
-    if(NIK === 'Op' && password == 'Op') {
+    if(NIK === 'Op' && password == 'op') {
       navigation.replace('Oprator', {uri: uri});
     }
     else {

@@ -87,7 +87,7 @@ const guestSignIn = async(req, res, next) => {
 };
 
 const postPengumuman = async(req, res, next) => {
-    const { kapasitas, judul, pengumuman } = req.query;
+    const { kapasitas, judul, pengumuman, presentase } = req.query;
     
     try {
         const pResult = await p.create({
@@ -99,6 +99,7 @@ const postPengumuman = async(req, res, next) => {
 
         const jResult = await j.updateOne({
             kapasitas: kapasitas,
+            presentase: presentase,
         });
 
         res.send({
