@@ -96,7 +96,7 @@ const Menu = ({navigation, route}) => {
       <Text style={{color:'black',marginLeft:10,marginTop:5}}>Isi Pengumuman</Text>
       <View style={{borderWidth: 1,
             borderColor: 'black',
-            borderRadius: 5,marginHorizontal:10,marginVertical:5, height:300,justifyContent:'center',marginBottom:20}}>
+            borderRadius: 5,marginHorizontal:10,marginVertical:5, height:300,marginBottom:20}}>
               <Text>{pengumuman}</Text>
    </View>
       </ScrollView>

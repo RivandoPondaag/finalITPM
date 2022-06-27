@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import { Logo } from '../../assets'
 
-const uri = 'http://192.168.1.5:3000/';
+const uri = 'http://192.168.1.100:3000/';
 
 const SignIn = ({navigation}) => {
   const [NIK, setNIK] = useState('');
@@ -42,7 +42,7 @@ const SignIn = ({navigation}) => {
       <TextInput title="NIK" placeholder ="Type Your NIK" onChangeText={setNIK} />
 
       <Gap height={16}/>
-      <TextInput title="Password" placeholder ="Type Your Password" onChangeText={setPassword} />
+      <TextInput title="Password" placeholder ="Type Your Password" onChangeText={setPassword} secureTextEntry/>
       <Gap height={24}/>
       <Button title="Sign In" onPress={SignIn_onPress}/>
       <Gap height={24}/>

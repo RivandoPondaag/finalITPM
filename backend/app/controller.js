@@ -95,6 +95,8 @@ const postPengumuman = async(req, res, next) => {
             pengumuman: pengumuman,
         });
 
+        
+
         const jResult = await j.updateOne({
             kapasitas: kapasitas,
         });

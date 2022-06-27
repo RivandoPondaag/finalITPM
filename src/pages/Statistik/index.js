@@ -13,6 +13,7 @@ const Statistik = ({navigation, route}) => {
     (async() => {
       const req = await fetch(`${uri}getJadwal`);
       const res = await req.json();
+      
       if(res.status === 'success') {
         // kalo bisa ambil data dari backend
         setLakiLaki(res.desc.lakiLaki);
@@ -27,8 +28,8 @@ const Statistik = ({navigation, route}) => {
   const data ={
     
     jenisKelamin: [
-      {x: 'Laki-Laki', y: {lakiLaki}},
-      {x: 'Perempuan', y: {perempuan}},
+      {x: 'Laki-Laki', y: lakiLaki},
+      {x: 'Perempuan', y: perempuan},
 
     ],
     jemaat: [
@@ -40,6 +41,7 @@ const Statistik = ({navigation, route}) => {
     
   return (
     <View style={{flex: 1}}>
+     
        <Header title='Statistik' onBack={()=>navigation.goBack()}/>
       <ScrollView>
       <View style={styles.page}>

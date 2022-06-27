@@ -2,7 +2,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StackActions } from '@react-navigation/native';
-import { Guest, Jadwal, Kapasitas, Menu, Oprator, SignIn, SignUP, SplashScreen, Statistik, Tentang } from '../pages';
+import { EditOprator, editOprator, Guest, Jadwal, Kapasitas, Menu, Oprator, SignIn, SignUP, SplashScreen, Statistik, Tentang } from '../pages';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +19,8 @@ const Router = () => {
         <Stack.Screen name="Jadwal" component={Jadwal}options={{headerShown: false}}/>
         <Stack.Screen name="Guest" component={Guest}options={{headerShown: false}}/>
         <Stack.Screen name="Oprator" component={Oprator}options={{headerShown: false}}/>
+        <Stack.Screen name="EditOprator" component={EditOprator}options={{headerShown: false}}/>
+
 
 
 

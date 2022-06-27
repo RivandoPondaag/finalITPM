@@ -8,5 +8,6 @@ import Kapasitas from "./Kapasitas";
 import Jadwal from "./Jadwal";
 import Guest from "./Guest";
 import Oprator from "./Oprator";
+import EditOprator from "./EditOprator"
 
-export {SplashScreen,SignIn,SignUP,Menu,Statistik,Tentang,Kapasitas,Jadwal,Guest,Oprator};
+export {SplashScreen,SignIn,SignUP,Menu,Statistik,Tentang,Kapasitas,Jadwal,Guest,Oprator,EditOprator};

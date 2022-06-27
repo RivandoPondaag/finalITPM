@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 
@@ -35,7 +35,10 @@ const Oprator = ({navigation, route}) => {
     <Gap height={10}/>
      <View style={{flex:1,}}>
      <View style={{backgroundColor:'white',paddingHorizontal:10,paddingVertical:10,}}>
-     <TextInput title='Jumlah Kapasitas'placeholder='Masukan Jumlah Kapasitas dalam %' onChangeText={setKapasitas} />
+     <TextInput title='Jumlah Kapasitas'placeholder='Masukan Jumlah Kapasitas' onChangeText={setKapasitas} />
+     </View>
+     <View style={{backgroundColor:'white',paddingHorizontal:10,paddingVertical:10,}}>
+     <TextInput title='Presentase'placeholder='Masukan Jumlah Presentase' onChangeText={setKapasitas} />
      </View>
      <View style={{backgroundColor:'white',paddingHorizontal:10,paddingVertical:10,}}>
      <TextInput title='Judul Pengumuman'placeholder='Masukan Judul Pengumuman' onChangeText={setJudul} />
@@ -49,6 +52,11 @@ const Oprator = ({navigation, route}) => {
      <View style={{paddingHorizontal:10,paddingTop:10}}>
      <Button title="Keluar" color='#8D92A3' onPress={()=>navigation.navigate('SignIn')}/>
      </View>
+     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('EditOprator')}>
+     <View style={{alignItems:'flex-end',marginRight:10,marginTop:5}}>
+      <Text style={{fontWeight:'bold',color:'#83078EB0'}}>Edit Username dan Password</Text>
+     </View>
+     </TouchableOpacity>
      </View>
     </View>
   )
