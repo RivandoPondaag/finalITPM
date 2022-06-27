@@ -2,6 +2,8 @@ import { StyleSheet, Text, View,ScrollView, TouchableOpacity,Image} from 'react-
 import React,{useState} from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
+import { RadioButton } from 'react-native-paper';
+
 
 
 
@@ -52,6 +54,8 @@ const SignUP = ({navigation, route}) => {
         setHasPhoto(true);
     }
 
+    const [value, setValue] = React.useState('first');
+
   return (
     <View style={styles.page}>
     <Header title='SignUp' onBack={()=>navigation.goBack()}/>
@@ -79,7 +83,23 @@ const SignUP = ({navigation, route}) => {
         <TextInput title='Nama' placeholder='Masukan nama anda' value={fullName} onChangeText={value=>setFullName(value)}/>
         <TextInput title='Kolom' placeholder='Masukan Kolom anda' value={kolom} onChangeText={value=>setKolom(value)}/>
         <TextInput title='NIK' placeholder='Masukan NIK anda' value={nik} onChangeText={value=>setNik(value)}/>
-        <TextInput title='Jenis Kelamin' placeholder='Masukan Jenis Kelamin anda' value={jenisKelamin} onChangeText={value=>setJenisKelamin(value)}/>
+
+    <Text style={{color:'black',marginTop:5,fontSize:16,}}>Jenis Kelamin</Text>
+    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+      <View style={{flexDirection:'row'}}>
+      <View style={{flexDirection:'row',alignItems:'center',marginRight:20}}>
+      <RadioButton value="Laki-laki" />
+        <Text>Laki-laki</Text>
+        
+      </View>
+      <View style={{flexDirection:'row',alignItems:'center',marginLeft:20}}>
+      <RadioButton value="Perempuan" />
+        <Text>Perempuan</Text>
+        
+      </View>
+      </View>
+     </RadioButton.Group>
+
         <TextInput title='Password' placeholder='Masukan Password anda' value={password} onChangeText={value=>setPassword(value)} secureTextEntry/>
         <Gap height={24}/>
         <Button title='Selanjutnya' onPress={onSubmit}/>

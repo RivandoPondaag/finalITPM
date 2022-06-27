@@ -4,6 +4,8 @@ import { Header, TextInput,Button } from '../../components'
 
 
 const EditOprator = ({navigation}) => {
+
+    
   return (
     <View style={{backgroundColor:"white",flex:1,}}>
     <Header title='Edit Operator' onBack={()=>navigation.goBack()}/>
@@ -18,8 +20,9 @@ const EditOprator = ({navigation}) => {
      <Button title="Simpan" color='#83078EB0' />
      </View>
 
-     
+    
     </View>
+    
     </View>
   )
 }
