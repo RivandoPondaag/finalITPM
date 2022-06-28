@@ -4,6 +4,9 @@ const jadwalSchema = new mongoose.Schema({
     kapasitas: {
         type: Number,
     },
+    presentase: {
+        type: Number,
+    },
     sesiPagi: {
         type: Number,
     },

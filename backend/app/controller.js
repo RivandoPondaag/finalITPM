@@ -90,19 +90,27 @@ const guestSignIn = async(req, res, next) => {
 };
 
 const postPengumuman = async(req, res, next) => {
-    const { kapasitas, judul, pengumuman, presentase } = req.query;
+    const { kapasitas, presentase, judul, pengumuman } = req.query;
     
     try {
-        const pResult = await p.create({
-            judul: judul,
-            pengumuman: pengumuman,
-        });
+        const pGet = await p.find();
+        console.log(pGet[pGet.length-1]);
+        console.log(pGet[pGet.length-1].judul);
+        console.log(pGet[pGet.length-1].pengumuman);
 
-        
+        const pResult = await p.create({
+            judul: (judul === 'null') ? pGet[pGet.length-1].judul : judul,
+            pengumuman: (pengumuman === 'null') ? pGet[pGet.length-1].pengumuman : pengumuman,
+        });
 
         const jResult = await j.updateOne({
             kapasitas: kapasitas,
             presentase: presentase,
+            sesiPagi: 0,
+            sesiSiang: 0,
+            sesiMalam: 0,
+            lakiLaki: 0,
+            perempuan: 0,
         });
 
         res.send({

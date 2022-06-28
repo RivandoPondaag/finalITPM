@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 
 const Oprator = ({navigation, route}) => {
