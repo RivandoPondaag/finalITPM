@@ -13,12 +13,12 @@ const SignIn = ({navigation}) => {
     const req = await fetch(`${uri}signIn?NIK=${NIK}&password=${password}`);
     const res = await req.json();
     if(res.status === 'success') {
-      if(res.type === 'User') {
+      if(res.desc.type === 'User') {
         // kalo akun terdaftar sbg user
-        navigation.navigate('Menu', {uri: uri, data: res.desc[0]});
+        navigation.navigate('Menu', {uri: uri, data: res.desc});
       }
       // kalo akun terdaftar sbg operator
-      else if(res.type === 'Operator') {
+      else if(res.desc.type === 'Operator') {
         navigation.replace('Oprator', {uri: uri});
       }
     }

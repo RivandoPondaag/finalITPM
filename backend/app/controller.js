@@ -2,22 +2,18 @@ const user = require('./userModel');
 const guest = require('./guestModel');
 const p = require('./pengumumanModel');
 const j = require('./jadwalModel');
-const o = require('./operatorModel');
-const { ObjectID } = require('mongodb');
 
 const signIn = async(req, res, next) => {
     const { NIK, password } = req.query;
 
     try {
-        const result = (parseInt(NIK) === 1) ? await user.find({NIK: parseInt(NIK), password: password}) : await o.find({username: NIK, password: password});
-
+        const result = await user.find({NIK: parseInt(NIK), password: password});
 
         if(result.length > 0) {
             res.send({
                 status: 'success',
-                message: `Akun terdaftar.`,
-                type: (parseInt(NIK) === 1) ? 'User' : 'Operator',
-                desc: result,
+                messsage: 'Akun terdaftar',
+                desc: result[0],
             });
         }
         else {
@@ -189,8 +185,15 @@ const changeJadwal = async(req, res, next) => {
 }
 
 const updateOperator = async(req, res, next) => {
+    console.log(req.body);
     try {
-        const result = await o.updateOne(req.body);
+        const result = await user.updateOne({
+            type: 'Operator',
+        },
+        {
+            NIK: parseInt(req.body.username),
+            password: req.body.password,
+        })
 
         res.send({
             status: 'success',
