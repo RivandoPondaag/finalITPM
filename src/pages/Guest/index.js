@@ -30,7 +30,7 @@ const Guest = ({navigation, route}) => {
         password: null,
         photo: null,
         address: address,
-      }});
+      }, type: 'Guest'});
     }
     else if(res.status === 'error') {
       // code kalo guest nd bsa masuk

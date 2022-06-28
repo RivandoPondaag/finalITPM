@@ -8,6 +8,7 @@ const Statistik = ({navigation, route}) => {
 
   const [lakiLaki, setLakiLaki] = useState(0);
   const [perempuan, setPerempuan] = useState(0);
+  const [tamu, setTamu] = useState(0);
 
   useEffect(() => {
     (async() => {
@@ -18,12 +19,13 @@ const Statistik = ({navigation, route}) => {
         // kalo bisa ambil data dari backend
         setLakiLaki(res.desc.lakiLaki);
         setPerempuan(res.desc.perempuan);
+        setTamu(res.desc.tamu);
       }
       else {
         // kalo nd bisa ambil data dari backend
       }
     })();
-  }, [lakiLaki, perempuan]);
+  }, [lakiLaki, perempuan, tamu]);
 
   const data ={
     
@@ -33,8 +35,8 @@ const Statistik = ({navigation, route}) => {
 
     ],
     jemaat: [
-      {x: 'Jemaat GMIM Tabita', y: 95},
-      {x: 'Jemaat Luar', y: 20},
+      {x: 'Jemaat GMIM Tabita', y: lakiLaki+perempuan},
+      {x: 'Jemaat Luar', y: tamu},
 
     ],
   };

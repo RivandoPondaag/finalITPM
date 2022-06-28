@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Jadwal = ({navigation, route}) => {
   const uri = route.params.uri;
+  const type = route.params.type;
   const jenisKelamin = route.params.jenisKelamin;
 
   const [tempatDuduk, setTempatDuduk] = useState(null);
@@ -15,6 +16,7 @@ const Jadwal = ({navigation, route}) => {
   const [sesiMalam, setSesiMalam] = useState(null);
   const [lakiLaki, setLakiLaki] = useState(null);
   const [perempuan, setPerempuan] = useState(null);
+  const [tamu, setTamu] = useState(null);
 
   useEffect(() => {
     (async() => {
@@ -29,12 +31,13 @@ const Jadwal = ({navigation, route}) => {
         setSesiMalam(res.desc.sesiMalam);
         setLakiLaki(res.desc.lakiLaki);
         setPerempuan(res.desc.perempuan);
+        setTamu(res.desc.tamu);
       }
       else {
         // jika backend gagal mengirim jumlah kapasitas
       }
     })();
-  }, [sesiPagi, sesiSiang, sesiMalam, lakiLaki, perempuan]);
+  }, [sesiPagi, sesiSiang, sesiMalam, lakiLaki, perempuan, tamu]);
 
   const PesanTempat_onPress = async(waktu=null) => {
     let reqOpt = {
@@ -43,52 +46,95 @@ const Jadwal = ({navigation, route}) => {
       body: null,
     };
 
-    if(waktu === `pagi`) {
-      if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas*presentase/100)) {
-        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({
-          sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
-          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
-          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
-        });
-        setSesiPagi(parseInt(tempatDuduk) + parseInt(sesiPagi));
-        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
-        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+    if(type === 'User') {
+      if(waktu === `pagi`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas*presentase/100)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
+            lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+            perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+          });
+          setSesiPagi(parseInt(tempatDuduk) + parseInt(sesiPagi));
+          (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+          (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
       }
-      else {
-        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      else if(waktu === `siang`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
+            lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+            perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+          });
+          setSesiSiang(parseInt(tempatDuduk) + parseInt(sesiSiang));
+          (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+          (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
+      }
+      else if(waktu === `malam`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
+            lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
+            perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
+          });
+          setSesiMalam(parseInt(tempatDuduk) + parseInt(sesiMalam));
+          (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
+          (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
       }
     }
-    else if(waktu === `siang`) {
-      if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
-        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({
-          sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
-          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
-          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
-        });
-        setSesiSiang(parseInt(tempatDuduk) + parseInt(sesiSiang));
-        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
-        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+    else if(type === 'Guest') {
+      if(waktu === `pagi`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas*presentase/100)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
+            tamu: parseInt(tamu+1),
+          });
+          setTamu(parseInt(tamu+1));
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
       }
-      else {
-        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      else if(waktu === `siang`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
+            tamu: parseInt(tamu+1),
+          });
+          setTamu(parseInt(tamu+1));
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
       }
-    }
-    else if(waktu === `malam`) {
-      if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
-        // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
-        reqOpt.body = JSON.stringify({
-          sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
-          lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
-          perempuan: (jenisKelamin === 'Perempuan') ? perempuan+1 : perempuan,
-        });
-        setSesiMalam(parseInt(tempatDuduk) + parseInt(sesiMalam));
-        (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
-        (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
-      }
-      else {
-        // kalo tempat duduk yang dibooking melebihi batas kapasitas
+      else if(waktu === `malam`) {
+        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
+          // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          reqOpt.body = JSON.stringify({
+            sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
+            tamu: parseInt(tamu+1),
+          });
+          setTamu(parseInt(tamu+1));
+        }
+        else {
+          // kalo tempat duduk yang dibooking melebihi batas kapasitas
+        }
       }
     }
 

@@ -90,9 +90,6 @@ const postPengumuman = async(req, res, next) => {
     
     try {
         const pGet = await p.find();
-        console.log(pGet[pGet.length-1]);
-        console.log(pGet[pGet.length-1].judul);
-        console.log(pGet[pGet.length-1].pengumuman);
 
         const pResult = await p.create({
             judul: (judul === 'null') ? pGet[pGet.length-1].judul : judul,
@@ -107,6 +104,7 @@ const postPengumuman = async(req, res, next) => {
             sesiMalam: 0,
             lakiLaki: 0,
             perempuan: 0,
+            tamu: 0,
         });
 
         res.send({
@@ -185,7 +183,6 @@ const changeJadwal = async(req, res, next) => {
 }
 
 const updateOperator = async(req, res, next) => {
-    console.log(req.body);
     try {
         const result = await user.updateOne({
             type: 'Operator',

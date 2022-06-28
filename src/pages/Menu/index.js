@@ -7,6 +7,7 @@ import { Profil, Warta } from '../../assets/icon';
 const Menu = ({navigation, route}) => {
   const uri = route.params.uri;
   const data = route.params.data;
+  const type = route.params.type;
 
   const [judul, setJudul] = useState(null);
   const [pengumuman, setPengumuman] = useState(null);
@@ -47,7 +48,7 @@ const Menu = ({navigation, route}) => {
      </View>
 
      <View style={styles.fitur}>
-   <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Jadwal', {uri: uri, jenisKelamin: data.jenisKelamin})}>
+   <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('Jadwal', {uri: uri, jenisKelamin: data.jenisKelamin, type: type})}>
     
    <View style={{paddingRight:10}}>
    

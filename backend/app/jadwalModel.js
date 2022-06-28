@@ -21,6 +21,9 @@ const jadwalSchema = new mongoose.Schema({
     },
     perempuan: {
         type: Number,
+    },
+    tamu: {
+        type: Number,
     }
 });
 

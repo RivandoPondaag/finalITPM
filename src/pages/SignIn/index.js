@@ -15,7 +15,7 @@ const SignIn = ({navigation}) => {
     if(res.status === 'success') {
       if(res.desc.type === 'User') {
         // kalo akun terdaftar sbg user
-        navigation.navigate('Menu', {uri: uri, data: res.desc});
+        navigation.navigate('Menu', {uri: uri, data: res.desc, type: 'User'});
       }
       // kalo akun terdaftar sbg operator
       else if(res.desc.type === 'Operator') {
