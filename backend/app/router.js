@@ -8,6 +8,7 @@ const {
     getPengumuman,
     getJadwal,
     changeJadwal,
+    updateOperator,
 } = require('./controller');
 
 router.get('/signIn', signIn);
@@ -17,5 +18,6 @@ router.post('/postPengumuman', postPengumuman);
 router.get('/getPengumuman', getPengumuman);
 router.get('/getJadwal', getJadwal);
 router.put('/changeJadwal', changeJadwal);
+router.put('/updateOperator', updateOperator);
 
 module.exports = router;

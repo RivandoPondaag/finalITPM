@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 
@@ -32,7 +32,7 @@ const Oprator = ({navigation, route}) => {
   };
 
   return (
-    <View style={{flex:1,backgroundColor:'white'}}>
+    <ScrollView style={{flex:1,backgroundColor:'white'}}>
      <Header title='Operator'/>
     <Gap height={10}/>
      <View style={{flex:1,}}>
@@ -52,15 +52,15 @@ const Oprator = ({navigation, route}) => {
      <Button title='Kirim' onPress={Kirim_onPress}/>
      </View>
      <View style={{paddingHorizontal:10,paddingTop:10}}>
-     <Button title="Keluar" color='#8D92A3' onPress={()=>navigation.navigate('SignIn')}/>
+     <Button title="Keluar" color='#8D92A3' onPress={()=>navigation.navigate('SignIn', {uri: uri})}/>
      </View>
-     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('EditOprator')}>
+     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('EditOprator', {uri: uri})}>
      <View style={{alignItems:'flex-end',marginRight:10,marginTop:5}}>
       <Text style={{fontWeight:'bold',color:'#83078EB0'}}>Edit Username dan Password</Text>
      </View>
      </TouchableOpacity>
      </View>
-    </View>
+    </ScrollView>
   )
 }
 

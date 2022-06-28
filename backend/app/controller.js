@@ -2,18 +2,21 @@ const user = require('./userModel');
 const guest = require('./guestModel');
 const p = require('./pengumumanModel');
 const j = require('./jadwalModel');
+const o = require('./operatorModel');
 const { ObjectID } = require('mongodb');
 
 const signIn = async(req, res, next) => {
     const { NIK, password } = req.query;
 
     try {
-        const result = await user.find({NIK: parseInt(NIK), password: password});
-        
+        const result = (parseInt(NIK) === 1) ? await user.find({NIK: parseInt(NIK), password: password}) : await o.find({username: NIK, password: password});
+
+
         if(result.length > 0) {
             res.send({
                 status: 'success',
                 message: `Akun terdaftar.`,
+                type: (parseInt(NIK) === 1) ? 'User' : 'Operator',
                 desc: result,
             });
         }
@@ -177,6 +180,25 @@ const changeJadwal = async(req, res, next) => {
     }
 }
 
+const updateOperator = async(req, res, next) => {
+    try {
+        const result = await o.updateOne(req.body);
+
+        res.send({
+            status: 'success',
+            message: `Akun operator berhasil diperbarui.`,
+            desc: result,
+        });
+    }
+    catch(e) {
+        res.send({
+            status: 'error',
+            message: `Akun operator gagal diperbarui.`,
+            desc: e.message,
+        });
+    }
+};
+
 module.exports = {
     signIn,
     createAccount,
@@ -185,4 +207,5 @@ module.exports = {
     getPengumuman,
     getJadwal,
     changeJadwal,
+    updateOperator,
 };

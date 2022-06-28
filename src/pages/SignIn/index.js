@@ -10,23 +10,25 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const SignIn_onPress = async() => {
-    if(NIK === 'Op' && password == 'op') {
-      navigation.replace('Oprator', {uri: uri});
-    }
-    else {
-      const req = await fetch(`${uri}signIn?NIK=${NIK}&password=${password}`);
-      const res = await req.json();
-      if(res.status === 'success') {
+    const req = await fetch(`${uri}signIn?NIK=${NIK}&password=${password}`);
+    const res = await req.json();
+    if(res.status === 'success') {
+      if(res.type === 'User') {
+        // kalo akun terdaftar sbg user
         navigation.navigate('Menu', {uri: uri, data: res.desc[0]});
       }
-      else if(res.status === 'error') {
-        if(res.message === 'Akun tidak terdaftar.') {
-          // kalo akun belum terdaftar
-          console.log(`Akun tidak terdaftar`);
-        }
-        else {
-          // kalo jadi error lain
-        }
+      // kalo akun terdaftar sbg operator
+      else if(res.type === 'Operator') {
+        navigation.replace('Oprator', {uri: uri});
+      }
+    }
+    else if(res.status === 'error') {
+      if(res.message === 'Akun tidak terdaftar.') {
+        // kalo akun belum terdaftar
+        console.log(`Akun tidak terdaftar`);
+      }
+      else {
+        // kalo jadi error lain
       }
     }
   };
