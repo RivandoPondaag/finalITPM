@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
+import {showMessage} from 'react-native-flash-message'
 
 const Oprator = ({navigation, route}) => {
   const uri = route.params.uri;
@@ -25,9 +26,19 @@ const Oprator = ({navigation, route}) => {
     const res = await req.json();
     if(res.status === 'success') {
       // kode jika berhasil terkirim
+      showMessage({
+        message: "Berhasil Diperbaharui",
+        color:"white",
+        backgroundColor:"#1C8E1A"
+      });
     }
     else {
       // kode jika tidak berhasil terkirim
+      showMessage({
+        message: "Gagal Diperbaharui",
+        color:"white",
+        backgroundColor:"#D9435E"
+      });
     }
   };
 
@@ -56,7 +67,7 @@ const Oprator = ({navigation, route}) => {
      </View>
      <TouchableOpacity activeOpacity={0.7} onPress={()=>navigation.navigate('EditOprator', {uri: uri})}>
      <View style={{alignItems:'flex-end',marginRight:10,marginTop:5}}>
-      <Text style={{fontWeight:'bold',color:'#83078EB0'}}>Edit Username dan Password</Text>
+      <Text style={{fontWeight:'bold',color:'#83078EB0'}}>Edit NIK dan Password</Text>
      </View>
      </TouchableOpacity>
      </View>

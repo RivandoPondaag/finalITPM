@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons';
+import {showMessage} from 'react-native-flash-message';
 
 const Jadwal = ({navigation, route}) => {
   const uri = route.params.uri;
@@ -50,6 +51,7 @@ const Jadwal = ({navigation, route}) => {
       if(waktu === `pagi`) {
         if(parseInt(tempatDuduk) + parseInt(sesiPagi) <= parseInt(kapasitas*presentase/100)) {
           // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
+          
           reqOpt.body = JSON.stringify({
             sesiPagi: parseInt(tempatDuduk) + parseInt(sesiPagi),
             lakiLaki: (jenisKelamin === 'Laki-laki') ? lakiLaki+1 : lakiLaki,
@@ -58,13 +60,23 @@ const Jadwal = ({navigation, route}) => {
           setSesiPagi(parseInt(tempatDuduk) + parseInt(sesiPagi));
           (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
           (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, Pilihlah sesi siang atau sesi malam",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
         }
       }
       else if(waktu === `siang`) {
-        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
+        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas*presentase/100)) {
           // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
           reqOpt.body = JSON.stringify({
             sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
@@ -74,13 +86,24 @@ const Jadwal = ({navigation, route}) => {
           setSesiSiang(parseInt(tempatDuduk) + parseInt(sesiSiang));
           (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
           (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, pilihlah sesi pagi atau sesi malam.",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
+          
         }
       }
       else if(waktu === `malam`) {
-        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
+        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas*presentase/100)) {
           // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
           reqOpt.body = JSON.stringify({
             sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
@@ -90,9 +113,19 @@ const Jadwal = ({navigation, route}) => {
           setSesiMalam(parseInt(tempatDuduk) + parseInt(sesiMalam));
           (jenisKelamin === 'Laki-laki') && setLakiLaki(parseInt(lakiLaki) + 1);
           (jenisKelamin === 'Perempuan') && setPerempuan(parseInt(perempuan) + 1);
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, pilihlah sesi pagi atau sesi siang.",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
         }
       }
     }
@@ -105,35 +138,65 @@ const Jadwal = ({navigation, route}) => {
             tamu: parseInt(tamu+1),
           });
           setTamu(parseInt(tamu+1));
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, pilihlah sesi siang atau sesi malam.",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
         }
       }
       else if(waktu === `siang`) {
-        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas)) {
+        if(parseInt(tempatDuduk) + parseInt(sesiSiang) <= parseInt(kapasitas*presentase/100)) {
           // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
           reqOpt.body = JSON.stringify({
             sesiSiang: parseInt(tempatDuduk) + parseInt(sesiSiang),
             tamu: parseInt(tamu+1),
           });
           setTamu(parseInt(tamu+1));
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, pilihlah sesi pagi atau sesi malam.",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
         }
       }
       else if(waktu === `malam`) {
-        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas)) {
+        if(parseInt(tempatDuduk) + parseInt(sesiMalam) <= parseInt(kapasitas*presentase/100)) {
           // kalo tempat duduk yang dibooking tidak melebihi batas kapasitas
           reqOpt.body = JSON.stringify({
             sesiMalam: parseInt(tempatDuduk) + parseInt(sesiMalam),
             tamu: parseInt(tamu+1),
           });
           setTamu(parseInt(tamu+1));
+          showMessage({
+            message: "Berhasil Dipesan",
+            color:"white",
+            backgroundColor:"#1C8E1A"
+          });
         }
         else {
           // kalo tempat duduk yang dibooking melebihi batas kapasitas
+          showMessage({
+            message: "Kapasitas melebihi batas, pilihlah sesi pagi atau sesi siang.",
+            color:"white",
+            backgroundColor:"#D9435E"
+          });
         }
       }
     }

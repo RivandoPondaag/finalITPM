@@ -47,6 +47,7 @@ const Statistik = ({navigation, route}) => {
        <Header title='Statistik' onBack={()=>navigation.goBack()}/>
       <ScrollView>
       <View style={styles.page}>
+        <Text style={{color:'black',fontSize:16,marginTop:10,marginLeft:10,fontWeight:'bold'}}>Statistik Pengguna aplikasi</Text>
       <VictoryChart domainPadding={{ x: 100 }} theme={VictoryTheme.material} >
         
         <VictoryBar data={data.jenisKelamin} style={{ data: { fill: "#c43a31" } }} />

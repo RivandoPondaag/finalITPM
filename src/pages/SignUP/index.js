@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import { Button, Gap, Header, TextInput } from '../../components'
 import {launchImageLibrary} from 'react-native-image-picker'
 import { RadioButton } from 'react-native-paper';
-
+import {showMessage} from 'react-native-flash-message'
 
 
 
@@ -36,6 +36,11 @@ const SignUP = ({navigation, route}) => {
         const req = await fetch(`${uri}createAccount`, reqOpt);
         const res = await req.json();
         if(res.status === 'success') {
+            showMessage({
+                message: "Berhasil Terdaftar",
+                color:"white",
+                backgroundColor:"#1C8E1A"
+              });
             navigation.replace('SignIn');
         }
         else if(res.status === 'error') {

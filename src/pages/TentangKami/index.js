@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, } from 'react-native'
 import React from 'react'
 import { Gap, Header } from '../../components'
 import { Greja } from '../../assets'
@@ -7,7 +7,8 @@ const TentangKami = ({navigation}) => {
   return (
     <View style={styles.page}>
     <Header title='Tentang Kami' onBack={()=>navigation.goBack()}/>
-    <Text style={styles.txt}>GMIM Tabita Sarongsong 1</Text>
+    <ScrollView>
+    <Text style={styles.txt}>{"\n"}GMIM Tabita Sarongsong 1 {"\n"}</Text>
     <Gap height={5}/>
     <View style={styles.grejaWrapper}>
     <Greja/>
@@ -37,12 +38,12 @@ const TentangKami = ({navigation}) => {
     </View>
     <Gap height={10}/>
     <Text style={styles.txt3}>
-    Kekristenan secara sistematis diperkenalkan di Minahasa oleh Johann Friedrich
+    {"\n"}     Kekristenan secara sistematis diperkenalkan di Minahasa oleh Johann Friedrich
     Riedel dan Johann Gottlieb Schwars, yang sebelum datang ke Indonesia dididik di
     Belanda dan dikirim oleh the Nederland Zendeling Genootschap, badan Misi
     Belanda. 
     <Text>
-         SEJARAH JEMAAT GMIM TABITA SARONGSONG 1 WILAYAH AIRMADIDI II 
+    {"\n"}      SEJARAH JEMAAT GMIM TABITA SARONGSONG 1 WILAYAH AIRMADIDI II 
         Jemaat Tabita dengan jumlah 6 kolom 180 KK menjadi jemaat yang
         mandiri pada tanggal 24 September 1989, sebagai hasil
         pemekaran Jemaat Sentrum Airmadidi. Dan langsung menunjuk
@@ -53,10 +54,12 @@ const TentangKami = ({navigation}) => {
         CAPAIAN SETIAP PERIODE PELAYANAN 9 TAHUN 1990 S/D 2009=PERIODE
         Tanggal 24 September 1989 Jemaat TABITA mekar dari Jemaat Centrum Airmadidi.
         Tanggal 11 November 1990 : Kanisah resmi menjadi Gereja HIBAH ENCI 
-        STIN Montung
+        STIN Montung.{"\n"}{"\n"}Coordinat : 1.4252629881859284, 124.97837691719296 .{"\n"}{"\n"}
+        
 
     </Text>
     </Text>
+    </ScrollView>
     </View>
   )
 }
